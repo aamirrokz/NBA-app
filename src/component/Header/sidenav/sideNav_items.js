@@ -17,6 +17,24 @@ const SideNavItems = () => {
       text: 'News',
       link: '/news',
     },
+    {
+      type: Styles.option,
+      icon: 'play',
+      text: 'Video',
+      link: '/video',
+    },
+    {
+      type: Styles.option,
+      icon: 'sign-in',
+      text: 'Sign-in',
+      link: '/sign-in',
+    },
+    {
+      type: Styles.option,
+      icon: 'sign-out',
+      text: 'Sign-out',
+      link: '/sign-out',
+    },
   ];
 
   const showitems = () => {

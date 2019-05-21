@@ -28,6 +28,7 @@ export default function header(props) {
 
   return (
     <header className={Styles.header}>
+      {/* passing props to sidenav */}
       <SideNav {...props} />
       <div className={Styles.headerOpt}>
         {navBars()}

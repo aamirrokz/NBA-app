@@ -6,8 +6,8 @@ const sideNav = props => {
   return (
     <div>
       <SideNav
-        showNav={props.showNav}
-        onHideNav={props.onHideNav}
+        showNav={props.showNav} //boolean value if true sidenav opens
+        onHideNav={props.onHideNav} //boolean value if true sidenav closes
         navStyle={{
           background: '#242424',
           maxWidth: '220px',
