@@ -20,7 +20,7 @@
     box-sizing: border-box;
     opacity: 0;
     transform: translateX(-100%);
-    transition: all .5 ease-in;
+    transition: all .5s ease-in;
 }
 
 .newsList_wrapper_enter {
