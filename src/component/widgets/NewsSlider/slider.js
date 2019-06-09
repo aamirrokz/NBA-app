@@ -23,7 +23,7 @@ class NewsSlider extends Component {
   }
 
   render() {
-    console.log(this.state);
+    // console.log(this.state);
     return (
       <SliderTemplate
         data={this.state.news}

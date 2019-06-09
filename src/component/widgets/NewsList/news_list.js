@@ -4,12 +4,14 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 import Button from '../Buttons/button';
+import CardInfo from '../../widgets/Cardinfo/cardinfo';
 
 import { URL } from '../../../config';
 
 import Styles from './newsList.module.css';
 export default class NewsList extends Component {
   state = {
+    teams: [],
     items: [],
     start: this.props.start,
     end: this.props.start + this.props.amount,
@@ -21,6 +23,12 @@ export default class NewsList extends Component {
   }
 
   request = (start, end) => {
+    axios.get(`${URL}/teams`).then(response => {
+      this.setState({
+        teams: response.data,
+      });
+    });
+
     axios.get(`${URL}/articles?start=${start}&_end=${end}`).then(response => {
       this.setState({
         items: [...this.state.items, ...response.data],
@@ -49,6 +57,11 @@ export default class NewsList extends Component {
           >
             <div>
               <div className={Styles.newslist_item}>
+                <CardInfo
+                  teams={this.state.teams}
+                  team={item.team}
+                  date={item.date}
+                />
                 <Link to={`/articles/${item.id}`}>
                   <h2>{item.title}</h2>
                 </Link>
@@ -65,7 +78,7 @@ export default class NewsList extends Component {
   };
 
   render() {
-    // console.log(this.state.items);
+    // console.log(this.state.teams);
     return (
       <div>
         <TransitionGroup component="div" className="list">
