@@ -14,6 +14,13 @@ export default function Button(props) {
         </div>
       );
       break;
+    case 'LinkTo':
+      template = (
+        <Link to={props.linkTo} className={Styles.blue_btn}>
+          {props.cta}
+        </Link>
+      );
+      break;
     default:
       template = null;
   }
