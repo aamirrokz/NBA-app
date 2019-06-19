@@ -1,3 +1,3 @@
 const CURRENT_YEAR = new Date().getFullYear();
-const URL = 'http://localhost:3004';
+const URL = 'https://json-server-f25be950e.now.sh';
 export { CURRENT_YEAR, URL };

@@ -4,7 +4,6 @@ import axios from 'axios';
 
 import { URL } from '../../../config';
 import Button from '../Buttons/button';
-import { stringTypeAnnotation } from '@babel/types';
 
 export default class VideosList extends Component {
   state = {
@@ -16,13 +15,14 @@ export default class VideosList extends Component {
   };
 
   componentWillMount() {
-    this.request(this.props.start, this.props.end);
+    this.request(this.props.start, this.props.amount);
   }
 
   request = (start, end) => {
     //videos request not working
-    axios.get(`${URL}/videos?_start=${start}&_end=${end}`).then(response => {
-      console.log(response);
+    let videoURL = `${URL}/videos?_start=${start}&_end=${end}`;
+    axios.get(videoURL).then(response => {
+      console.log(videoURL);
       this.setState({
         videos: response.data,
       });
@@ -75,7 +75,7 @@ export default class VideosList extends Component {
   };
 
   render() {
-    // console.log(this.state);
+    console.log(this.state.end, 'this is end ');
     return (
       <div className={Styles.videosList_wrapper}>
         {this.renderTitle(this.props.title)}
