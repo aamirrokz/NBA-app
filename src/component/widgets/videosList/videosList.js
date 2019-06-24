@@ -4,7 +4,7 @@ import axios from 'axios';
 
 import { URL } from '../../../config';
 import Button from '../Buttons/button';
-
+import VideosListTemplate from './VideosListTemplate';
 export default class VideosList extends Component {
   state = {
     teams: [],
@@ -24,7 +24,9 @@ export default class VideosList extends Component {
     axios.get(videoURL).then(response => {
       console.log(videoURL);
       this.setState({
-        videos: response.data,
+        videos: [...this.state.videos, ...response.data],
+        start,
+        end,
       });
     });
     if (this.state.teams.length < 1) {
@@ -36,17 +38,16 @@ export default class VideosList extends Component {
     }
   };
 
-  renderVideos = type => {
+  renderVideos = () => {
     let template = null;
-    switch (type) {
+    switch (this.props.type) {
       case 'card':
-        template = this.state.videos.map((item, i) => {
-          return (
-            <div key={i}>
-              <p>{item.title}</p>
-            </div>
-          );
-        });
+        template = (
+          <VideosListTemplate
+            data={this.state.videos}
+            teams={this.state.teams}
+          />
+        );
         break;
       default:
         template = null;
@@ -55,7 +56,10 @@ export default class VideosList extends Component {
     return template;
   };
 
-  loadMore = () => {};
+  loadMore = () => {
+    let end = this.state.end + this.state.amount;
+    this.request(this.state.end, end);
+  };
 
   renderTitle = title => {
     return title ? <h3>NBA Videos</h3> : null;
@@ -65,7 +69,7 @@ export default class VideosList extends Component {
     return button ? (
       <Button
         type="loadmore"
-        loadmore={() => this.loadMore}
+        loadMore={() => this.loadMore()}
         cta="Load more videos"
       />
     ) : (

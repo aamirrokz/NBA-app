@@ -31,7 +31,9 @@ export default class NewsList extends Component {
 
     axios.get(`${URL}/articles?start=${start}&_end=${end}`).then(response => {
       this.setState({
-        items: [...this.state.items, ...response.data],
+        items: [...response.data, ...this.state.items],
+        start,
+        end,
       });
     });
   };
