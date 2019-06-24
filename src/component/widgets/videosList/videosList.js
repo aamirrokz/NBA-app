@@ -29,7 +29,6 @@ export default class VideosList extends Component {
     });
     if (this.state.teams.length < 1) {
       axios.get(`${URL}/teams`).then(response => {
-        console.log(response);
         this.setState({
           teams: response.data,
         });
@@ -41,10 +40,10 @@ export default class VideosList extends Component {
     let template = null;
     switch (type) {
       case 'card':
-        template = this.state.teams.map((item, i) => {
+        template = this.state.videos.map((item, i) => {
           return (
             <div key={i}>
-              <p>{item.name}</p>
+              <p>{item.title}</p>
             </div>
           );
         });
@@ -75,7 +74,6 @@ export default class VideosList extends Component {
   };
 
   render() {
-    console.log(this.state.end, 'this is end ');
     return (
       <div className={Styles.videosList_wrapper}>
         {this.renderTitle(this.props.title)}
