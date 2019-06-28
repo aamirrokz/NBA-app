@@ -5,7 +5,6 @@ import { URL } from '../../../../config';
 import Styles from '../../articles.module.css';
 
 import Header from './header';
-import Body from './body';
 
 export default class NewsArticles extends Component {
   state = {
@@ -39,7 +38,14 @@ export default class NewsArticles extends Component {
           date={article.date}
           author={article.author}
         />
-        <Body />
+        <div className={Styles.articleBody}>
+          <h1>{article.title}</h1>
+          <div
+            className={Styles.articleImage}
+            style={{ background: `url('/images/articles/${article.image}')` }}
+          />
+          <div className={Styles.articleText}>{article.body}</div>
+        </div>
       </div>
     );
   }

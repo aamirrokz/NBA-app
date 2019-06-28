@@ -2,7 +2,6 @@ import React from 'react';
 import Styles from '../articles.module.css';
 
 export default function TeamInfo(props) {
-  console.log(props.team.logo);
   return (
     <div className={Styles.articleTeamHeader}>
       <div
